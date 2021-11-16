@@ -1,0 +1,16 @@
+.qty {
+  width: var(--sp-5);
+  text-align: right;
+}
+
+.qtyCol {
+  width: 36px;
+}
+
+.priceCol {
+  width: 110px;
+}
+
+.delCol {
+  width: 30px;
+}

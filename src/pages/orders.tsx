@@ -1,0 +1,50 @@
+import React from 'react';
+import {
+  Header,
+  OrderView,
+  ScrollingContainer,
+  ViewVerticalContainer,
+} from '../components';
+import { Order } from '../models';
+import { OrderRepo } from '../repositories';
+
+interface OrdersPageProps {
+  orders: Array<Order>;
+}
+
+const OrdersPage = ({ orders }: OrdersPageProps) => {
+  return (
+    <ViewVerticalContainer>
+      <Header />
+      <ScrollingContainer className="container flex-1 my-2">
+        {orders.length === 0 ? (
+          <p>Your have no orders.</p>
+        ) : (
+          orders.map((order) => (
+            <div key={order.id} className="w-640">
+              <OrderView order={order} />
+            </div>
+          ))
+        )}
+      </ScrollingContainer>
+    </ViewVerticalContainer>
+  );
+};
+
+export async function getServerSideProps() {
+  const orders = OrderRepo.getOrders().sort((order1: Order, order2: Order) => {
+    const date1 = new Date(order1.createdAt);
+    const date2 = new Date(order2.createdAt);
+    if (date1 < date2) return 1;
+    if (date1 > date2) return -1;
+    return 0;
+  });
+
+  return {
+    props: {
+      orders,
+    },
+  };
+}
+
+export default OrdersPage;
