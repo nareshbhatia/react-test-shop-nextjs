@@ -1,7 +1,5 @@
 {
-  "cart": {
-    "items": []
-  },
+  "cart": [],
   "catalog": [
     {
       "id": "apple-imac",

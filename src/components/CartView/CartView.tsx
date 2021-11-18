@@ -2,12 +2,12 @@ import React, { Fragment } from 'react';
 import { NumberUtils } from '@react-force/number-utils';
 import { AiTwotoneDelete } from 'react-icons/ai';
 import { useRouter } from 'next/router';
-import { Cart, CartUtils } from '../../models';
+import { OrderItem, OrderItemUtils } from '../../models';
 import { HorizontalContainer } from '../Containers';
 import styles from './CartView.module.css';
 
 export interface CartViewProps {
-  cart: Cart;
+  cart: Array<OrderItem>;
 }
 
 export const CartView = ({ cart }: CartViewProps) => {
@@ -32,18 +32,18 @@ export const CartView = ({ cart }: CartViewProps) => {
     <Fragment>
       <HorizontalContainer className="justify-between items-center">
         <h2>Shopping Cart</h2>
-        {cart.items.length > 0 ? (
+        {cart.length > 0 ? (
           <button className="btn btn-sm btn-secondary" onClick={handleCheckout}>
             Checkout
           </button>
         ) : null}
       </HorizontalContainer>
-      {cart.items.length === 0 ? (
+      {cart.length === 0 ? (
         <p>Please click on a product to start your order.</p>
       ) : (
         <table data-testid="order-items" className="mt-3">
           <tbody>
-            {cart.items.map((item, index) => (
+            {cart.map((item, index) => (
               <tr key={index}>
                 <td>{item.productName}</td>
                 <td className={`${styles.qtyCol} text-right`}>
@@ -78,7 +78,7 @@ export const CartView = ({ cart }: CartViewProps) => {
             <tr>
               <td colSpan={2}>Total</td>
               <td className="text-right">
-                {NumberUtils.formatAsMoney(CartUtils.total(cart))}
+                {NumberUtils.formatAsMoney(OrderItemUtils.totalItems(cart))}
               </td>
             </tr>
           </tfoot>

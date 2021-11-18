@@ -7,12 +7,12 @@ import {
   ScrollingContainer,
   ViewVerticalContainer,
 } from '../components';
-import { Cart, Catalog } from '../models';
+import { Catalog, OrderItem } from '../models';
 import { DB_URL } from '../utils';
 
 interface HomePageProps {
   catalog: Catalog;
-  cart: Cart;
+  cart: Array<OrderItem>;
 }
 
 const HomePage = ({ catalog, cart }: HomePageProps) => {
