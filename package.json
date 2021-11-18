@@ -6,7 +6,8 @@
     "dev": "next dev",
     "format": "prettier --write README.md 'src/**/{*.md,*.json,*.css,*.ts*}'",
     "lint": "next lint",
-    "start": "next start"
+    "start": "next start",
+    "start:server": "json-server --watch db/db.json --port 8080"
   },
   "dependencies": {
     "@hookform/resolvers": "^2.8.3",
@@ -24,6 +25,7 @@
     "@types/yup": "^0.29.13",
     "eslint": "7",
     "eslint-config-next": "12.0.3",
+    "json-server": "^0.17.0",
     "prettier": "^2.4.1",
     "typescript": "4.4.4"
   }

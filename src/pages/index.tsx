@@ -8,7 +8,7 @@ import {
   ViewVerticalContainer,
 } from '../components';
 import { Cart, Catalog } from '../models';
-import { CartRepo, CatalogRepo } from '../repositories';
+import { DB_URL } from '../utils';
 
 interface HomePageProps {
   catalog: Catalog;
@@ -32,10 +32,24 @@ const HomePage = ({ catalog, cart }: HomePageProps) => {
 };
 
 export async function getServerSideProps() {
+  // From https://nextjs.org/docs/basic-features/data-fetching:
+  //
+  // You should not use fetch() to call an API route in getServerSideProps.
+  // Instead, directly import the logic used inside your API route. You may
+  // need to slightly refactor your code for this approach.
+  //
+  // Fetching from an external API is fine!
+
+  const resCatalog = await fetch(`${DB_URL}/catalog`);
+  const catalog = await resCatalog.json();
+
+  const resCart = await fetch(`${DB_URL}/cart`);
+  const cart = await resCart.json();
+
   return {
     props: {
-      catalog: CatalogRepo.getCatalog(),
-      cart: CartRepo.getCart(),
+      catalog,
+      cart,
     },
   };
 }

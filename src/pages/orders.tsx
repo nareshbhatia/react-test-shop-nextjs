@@ -6,7 +6,7 @@ import {
   ViewVerticalContainer,
 } from '../components';
 import { Order } from '../models';
-import { OrderRepo } from '../repositories';
+import { DB_URL } from '../utils';
 
 interface OrdersPageProps {
   orders: Array<Order>;
@@ -32,7 +32,10 @@ const OrdersPage = ({ orders }: OrdersPageProps) => {
 };
 
 export async function getServerSideProps() {
-  const orders = OrderRepo.getOrders().sort((order1: Order, order2: Order) => {
+  const resOrders = await fetch(`${DB_URL}/orders`);
+  const orders = await resOrders.json();
+
+  const sortedOrders = orders.sort((order1: Order, order2: Order) => {
     const date1 = new Date(order1.createdAt);
     const date2 = new Date(order2.createdAt);
     if (date1 < date2) return 1;
@@ -42,7 +45,7 @@ export async function getServerSideProps() {
 
   return {
     props: {
-      orders,
+      orders: sortedOrders,
     },
   };
 }

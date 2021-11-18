@@ -3,7 +3,15 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with
 
 ## Getting Started
 
-First, run the development server:
+First, run json-server that serves as our database:
+
+```bash
+npm run start:server
+# or
+yarn start:server
+```
+
+In a different shell, run the development server:
 
 ```bash
 npm run dev

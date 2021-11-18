@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import { useRouter } from 'next/router';
 import { Catalog } from '../../models';
 import { ProductView } from '../ProductView';
 
@@ -7,8 +8,24 @@ export interface CatalogViewProps {
 }
 
 export const CatalogView = ({ catalog }: CatalogViewProps) => {
-  const handleProductClicked = (productId: string) => {
-    // addProductMutation.mutate(productId);
+  const router = useRouter();
+
+  // This function forces a call to getServerSideProps(),
+  // thus refreshing the page data.
+  const refreshData = () => {
+    console.log('----> router.asPath', router.asPath);
+    router.replace(router.asPath);
+  };
+
+  const handleProductClicked = async (productId: string) => {
+    await fetch('/api/cart/items', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ productId }),
+    });
+    refreshData();
   };
 
   return (
