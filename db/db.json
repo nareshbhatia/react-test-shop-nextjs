@@ -136,18 +136,21 @@
       "createdAt": "2021-01-01T14:00:00.000Z",
       "items": [
         {
+          "id": "b3c120c9-8095-4d61-8d4a-61889b3504be",
           "productId": "apple-imac",
           "productName": "iMac",
           "price": 1299,
           "quantity": 1
         },
         {
+          "id": "023d137b-5682-435b-a9a9-3d70bb03f320",
           "productId": "apple-ipad",
           "productName": "iPad",
           "price": 249,
           "quantity": 1
         },
         {
+          "id": "8c98c91f-4aae-427e-a8ec-96ea706a63d6",
           "productId": "nest-learning-thermostat",
           "productName": "Nest Learning Thermostat",
           "price": 249,
@@ -169,24 +172,28 @@
       "createdAt": "2021-07-09T14:00:00.000Z",
       "items": [
         {
+          "id": "a3ae6e9f-336c-4516-8577-13b255340ba9",
           "productId": "apple-imac",
           "productName": "iMac",
           "price": 1299,
           "quantity": 1
         },
         {
+          "id": "f528556a-8226-4c5d-9c23-dbaa431508ed",
           "productId": "apple-ipad",
           "productName": "iPad",
           "price": 249,
           "quantity": 1
         },
         {
+          "id": "cff01ee5-a66e-466d-9387-632edf520f0a",
           "productId": "nest-learning-thermostat",
           "productName": "Nest Learning Thermostat",
           "price": 249,
           "quantity": 1
         },
         {
+          "id": "5474983d-71f5-4601-9035-da87dde539a1",
           "productId": "gopro-hero",
           "productName": "GoPro HERO Session Action Camera",
           "price": 149,
@@ -208,6 +215,7 @@
       "createdAt": "2021-03-05T14:00:00.000Z",
       "items": [
         {
+          "id": "7d4d4a2f-fb2c-4d96-b597-41c6fccdf8c5",
           "productId": "canon-eos-rebel",
           "productName": "Canon EOS Rebel SL1",
           "price": 403,
@@ -229,6 +237,7 @@
       "createdAt": "2021-02-05T14:00:00.000Z",
       "items": [
         {
+          "id": "760ae730-7aee-4d52-b16e-8830dc865bc7",
           "productId": "fitbit-charge-hr",
           "productName": "Fitbit Charge HR",
           "price": 136,

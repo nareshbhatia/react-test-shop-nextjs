@@ -32,6 +32,14 @@ const OrdersPage = ({ orders }: OrdersPageProps) => {
 };
 
 export async function getServerSideProps() {
+  // From https://nextjs.org/docs/basic-features/data-fetching:
+  //
+  // You should not use fetch() to call an API route in getServerSideProps.
+  // Instead, directly import the logic used inside your API route. You may
+  // need to slightly refactor your code for this approach.
+  //
+  // Fetching from an external API is fine!
+
   const resOrders = await fetch(`${DB_URL}/orders`);
   const orders = await resOrders.json();
 

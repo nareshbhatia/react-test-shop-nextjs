@@ -13,12 +13,11 @@ export const CatalogView = ({ catalog }: CatalogViewProps) => {
   // This function forces a call to getServerSideProps(),
   // thus refreshing the page data.
   const refreshData = () => {
-    console.log('----> router.asPath', router.asPath);
     router.replace(router.asPath);
   };
 
   const handleProductClicked = async (productId: string) => {
-    await fetch('/api/cart/items', {
+    await fetch('/api/cart/add-product', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
