@@ -34,6 +34,6 @@
   text-decoration: none;
 }
 
-.link.active {
+.active {
   color: var(--text-primary-default);
 }
