@@ -1,4 +1,5 @@
 import React from 'react';
+import Head from 'next/head';
 import {
   CartView,
   CatalogView,
@@ -18,6 +19,14 @@ interface HomePageProps {
 const HomePage = ({ catalog, cart }: HomePageProps) => {
   return (
     <ViewVerticalContainer>
+      <Head>
+        <html lang="en" />
+        <title>React Test Shop</title>
+        <meta
+          name="description"
+          content="Home page showing the product catalog and the cart"
+        />
+      </Head>
       <Header />
       <HorizontalContainer className="min-h-0 container">
         <ScrollingContainer className="flex-1 my-2">
