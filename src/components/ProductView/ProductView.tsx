@@ -19,15 +19,8 @@ export const ProductView = ({ product, onClick }: ProductViewProps) => {
       className={`${styles.product} paper border-paper items-center`}
       onClick={() => onClick(id)}
     >
-      <div>
-        <Image
-          className={styles.photo}
-          src={photo}
-          alt={name}
-          layout="fixed"
-          width={160}
-          height={160}
-        />
+      <div className={styles.photo}>
+        <Image src={photo} alt={name} layout="fill" objectFit="contain" />
       </div>
       <div className="ml-4">
         <h3>{name}</h3>
