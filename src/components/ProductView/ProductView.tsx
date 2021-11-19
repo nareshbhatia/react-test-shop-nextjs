@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import { NumberUtils } from '@react-force/number-utils';
 import { Product } from '../../models';
 import { HorizontalContainer } from '../Containers';
@@ -18,7 +19,16 @@ export const ProductView = ({ product, onClick }: ProductViewProps) => {
       className={`${styles.product} paper border-paper items-center`}
       onClick={() => onClick(id)}
     >
-      <img className={styles.photo} src={photo} alt={name} />
+      <div>
+        <Image
+          className={styles.photo}
+          src={photo}
+          alt={name}
+          layout="fixed"
+          width={160}
+          height={160}
+        />
+      </div>
       <div className="ml-4">
         <h3>{name}</h3>
         <p className="mt-0">{description}</p>
