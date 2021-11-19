@@ -2,44 +2,29 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import { v4 as uuidv4 } from 'uuid';
 import { DB_URL } from '../../../utils';
 
-interface AddProductInput {
+interface SetItemQuantityInput {
   productId: string;
+  quantity: number;
 }
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const { productId } = req.body as AddProductInput;
+  const { productId, quantity } = req.body as SetItemQuantityInput;
 
-  // get product details
-  const resProduct = await fetch(`${DB_URL}/catalog/${productId}`);
-  const product = await resProduct.json();
-
-  // find if the product is already in the cart
+  // get the item corresponding to the product
   const resItems = await fetch(`${DB_URL}/cart?productId=${productId}`);
   const items = await resItems.json();
   switch (items.length) {
     case 0:
-      const newOrderItem = {
-        id: uuidv4(),
-        productId,
-        productName: product.name,
-        price: product.price,
-        quantity: 1,
-      };
-      await fetch(`${DB_URL}/cart`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(newOrderItem),
+      res.status(404).send({
+        error: `${productId} is not in the cart`,
       });
-      res.status(201).send(newOrderItem);
       break;
     case 1:
       const existingOrderItem = items[0];
-      existingOrderItem.quantity++;
+      existingOrderItem.quantity = quantity;
       await fetch(`${DB_URL}/cart/${existingOrderItem.id}`, {
         method: 'PUT',
         headers: {

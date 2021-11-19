@@ -13,15 +13,32 @@ export interface CartViewProps {
 export const CartView = ({ cart }: CartViewProps) => {
   const router = useRouter();
 
-  const handleQuantityChange = (productId: string, quantity: string) => {
-    // setItemQuantityMutation.mutate({
-    //   productId,
-    //   quantity: parseInt(quantity, 10),
-    // });
+  // This function forces a call to getServerSideProps(),
+  // thus refreshing the page data.
+  const refreshData = () => {
+    router.replace(router.asPath);
   };
 
-  const handleDelete = (productId: string) => {
-    // deleteItemMutation.mutate(productId);
+  const handleQuantityChange = async (productId: string, quantity: string) => {
+    await fetch('/api/cart/set-item-quantity', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ productId, quantity: parseInt(quantity, 10) }),
+    });
+    refreshData();
+  };
+
+  const handleDelete = async (productId: string) => {
+    await fetch('/api/cart/delete-product', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ productId }),
+    });
+    refreshData();
   };
 
   const handleCheckout = () => {
