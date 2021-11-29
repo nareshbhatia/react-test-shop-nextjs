@@ -1,5 +1,6 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with
-[`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# React Test Shop Using Next.js
+
+![Home Page](assets/screenshot-home.png)
 
 ## Getting Started
 
